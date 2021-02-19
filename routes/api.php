@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/student','StudentController@store');
+
 Route::apiResource('/products','ProductController');
 
 Route::prefix('products')->group(function () {
