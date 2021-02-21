@@ -6,8 +6,9 @@ use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Model\Product;
-use Facade\FlareClient\Http\Response;
+
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -52,7 +53,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return  response(null,202);
+        return  response(null,Response::HTTP_NO_CONTENT);
         //
     }
 }
