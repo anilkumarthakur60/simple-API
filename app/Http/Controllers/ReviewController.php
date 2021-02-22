@@ -37,8 +37,9 @@ class ReviewController extends Controller
         //
     }
 
-    public function show(Review $review)
+    public function show(Product $product, Review $review)
     {
+        return $review;
         //
     }
 
@@ -49,14 +50,20 @@ class ReviewController extends Controller
     }
 
 
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Product $product,Review $review)
     {
+        $review->update($request->all());
+        return response([
+            'data'=>new ReviewResource($review)
+        ],Response::HTTP_CREATED);
         //
     }
 
 
-    public function destroy(Review $review)
+    public function destroy( Product $product, Review $review)
     {
+        $review->delete();
+        return response(null,Response::HTTP_NO_CONTENT);
         //
     }
 }
