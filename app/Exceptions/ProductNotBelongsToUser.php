@@ -7,7 +7,7 @@ use Exception;
 class ProductNotBelongsToUser extends Exception
 {
     public function render(){
-        return ['data'=>'product not belongs to user'];
+        return ['eroors'=>'product not belongs to user'];
     }
     //
 }

@@ -48,11 +48,16 @@ class ProductController extends Controller
 
 
 
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, Product $product)
     {
         $this->ProductUserCheck($product);
 
-        $product->update($request->all());
+        $product->name=$request->name;
+        $product->detail=$request->description;
+        $product->price=$request->price;
+        $product->stock=$request->stock;
+        $product->discount=$request->discount;
+        $product->update();
         return response([
             'data'=>new ProductResource($product)
         ],Response::HTTP_CREATED);
@@ -64,7 +69,9 @@ class ProductController extends Controller
         $product->delete();
         return  response(null,Response::HTTP_NO_CONTENT);
         //
+
     }
+
      public function ProductUserCheck($product){
         if(Auth::id()!==$product->user_id){
             throw new ProductNotBelongsToUser;
